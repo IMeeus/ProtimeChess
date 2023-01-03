@@ -6,7 +6,7 @@ namespace DDD.Chess.ValueObjects.Pieces
     {
         private readonly IMoveStategy _moveStategy = new KnightMoveStrategy();
 
-        public Knight(Color color) : base(color)
+        public Knight(Color color) : base(color, canJump: true)
         {
         }
 

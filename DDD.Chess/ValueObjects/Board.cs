@@ -11,6 +11,11 @@ namespace DDD.Chess.ValueObjects
             State = state;
         }
 
+        public Piece? GetPieceOnSquare(Square square)
+        {
+            return State[square];
+        }
+
         protected override IEnumerable<object> GetAtomicValues()
         {
             yield return State;

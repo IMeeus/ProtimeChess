@@ -203,6 +203,31 @@ namespace DDD.Chess.ValueObjects
             }
         }
 
+        public IEnumerable<Square> GetSquaresTowards(Square targetSquare)
+        {
+            IEnumerable<Square>[] allRanges =
+            {
+                AllUp(),
+                AllDown(),
+                AllRight(),
+                AllLeft(),
+                AllUpRight(),
+                AllUpLeft(),
+                AllDownRight(),
+                AllDownLeft()
+            };
+
+            foreach (var range in allRanges)
+            {
+                if (range.Contains(targetSquare))
+                {
+                    return range.TakeWhile(square => square.Equals(targetSquare));
+                }
+            }
+
+            throw new InvalidOperationException("No valid path towards square!");
+        }
+
         protected override IEnumerable<object> GetAtomicValues()
         {
             yield return File;

@@ -17,6 +17,15 @@
         public static ChessException InvalidMove
             => new("Invalid move!");
 
+        public static ChessException CanNotCaptureFriendlyPieces
+            => new("Can not capture piece of same color!");
+
+        public static ChessException SquareNotInRangeOfPiece
+            => new("Square not in range of piece!");
+
+        public static ChessException CantMoveThroughPieces
+            => new("Can't move through pieces!");
+
         private ChessException(string message) : base(message)
         {
         }
