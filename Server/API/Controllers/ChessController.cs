@@ -17,7 +17,7 @@ namespace API.Controllers
             return Ok();
         }
 
-        [HttpGet("startGame")]
+        [HttpPost("startGame")]
         public IActionResult StartGame()
         {
             return Ok();

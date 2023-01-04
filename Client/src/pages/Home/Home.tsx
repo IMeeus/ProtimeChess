@@ -1,10 +1,12 @@
 import { useNavigate } from "react-router-dom";
+import { startGame } from "services/ChessService";
 
 function Home() {
     const navigate = useNavigate();
 
     function handleStartGame() {
-        navigate("/game");
+        startGame();
+        // navigate("/game");
     }
 
     return (
