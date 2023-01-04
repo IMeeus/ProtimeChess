@@ -4,8 +4,8 @@ import { startGame } from "services/ChessService";
 function Home() {
     const navigate = useNavigate();
 
-    function handleStartGame() {
-        startGame();
+    async function handleStartGame() {
+        var tmp = await startGame();
         // navigate("/game");
     }
 

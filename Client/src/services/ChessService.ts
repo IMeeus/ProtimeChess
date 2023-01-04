@@ -1,4 +1,4 @@
-export async function startGame() {
+export async function startGame(): Promise<boolean> {
     var requestOptions = {
         method: "POST",
         header: null,
@@ -6,5 +6,6 @@ export async function startGame() {
     };
 
     const result = await fetch("https://localhost:44303/api/v1/chess/startGame", requestOptions);
-    console.log(result);
+    
+    return true;
 }
