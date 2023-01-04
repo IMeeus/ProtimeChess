@@ -1,5 +1,5 @@
 import {
-  Route, Routes
+  Route, Routes, Navigate
 } from "react-router-dom";
 import Game from "./pages/Game/Game";
 import Home from "./pages/Home/Home";
@@ -9,6 +9,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/game" element={<Game />} />
+      <Route path="*" element={<Navigate to="/" />}/>
     </Routes>
   );
 }
