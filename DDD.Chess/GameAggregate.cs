@@ -34,6 +34,15 @@ namespace DDD.Chess
             RaiseEvent(new GameStarted());
         }
 
+        // Rules:
+        // - within range of piece
+        // - can't pass through pieces, unless knight
+        // - can't attack friendly pieces
+        // - move can't result in check
+
+        // Special:
+        // - En Passant
+        // - Castling
         public void MakeMove(MakeMove command)
         {
             if (_state != GameState.RUNNING)
@@ -95,16 +104,6 @@ namespace DDD.Chess
                     throw ChessException.CantMoveThroughPieces;
                 }
             }
-
-            // Rules:
-            // - within range of piece
-            // - can't pass through pieces, unless knight
-            // - can't attack friendly pieces
-            // - move can't result in check
-
-            // Special:
-            // - En Passant
-            // - Castling
 
             RaiseEvent(new MoveMade());
         }
