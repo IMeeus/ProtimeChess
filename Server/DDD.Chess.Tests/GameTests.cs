@@ -11,8 +11,8 @@ namespace DDD.Chess.Tests
         [Test]
         public void StartGame_WhenGameHasAlreadyStarted_ShouldThrowError()
         {
-            var gameId = new GameId(Guid.NewGuid());
-            var game = new GameAggregate(gameId);
+            var gameId = new GameId(1);
+            var game = new Game(gameId);
             var startGameCommand = new StartGame();
 
             game.Start(startGameCommand);
@@ -26,8 +26,8 @@ namespace DDD.Chess.Tests
         [Test]
         public void MakeMove_WhenGameHasNotStarted_ShouldThrowError()
         {
-            var gameId = new GameId(Guid.NewGuid());
-            var game = new GameAggregate(gameId);
+            var gameId = new GameId(1);
+            var game = new Game(gameId);
 
             var startSquare = new Square(File.A, Rank.ONE);
             var endSquare = new Square(File.A, Rank.TWO);
@@ -42,8 +42,8 @@ namespace DDD.Chess.Tests
         [Test]
         public void MakeMove_FromA7ToA6_ShouldThrowInvalidTurn()
         {
-            var gameId = new GameId(Guid.NewGuid());
-            var game = new GameAggregate(gameId);
+            var gameId = new GameId(1);
+            var game = new Game(gameId);
 
             var startGameCommand = new StartGame();
             game.Start(startGameCommand);
@@ -61,8 +61,8 @@ namespace DDD.Chess.Tests
         [Test]
         public void MakeMove_FromA5ToA4_ShouldThrowNoPiece()
         {
-            var gameId = new GameId(Guid.NewGuid());
-            var game = new GameAggregate(gameId);
+            var gameId = new GameId(1);
+            var game = new Game(gameId);
 
             var startGameCommand = new StartGame();
             game.Start(startGameCommand);

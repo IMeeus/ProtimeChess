@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -8,10 +8,12 @@
 
   <ItemGroup>
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DB\Events.Db.csproj" />
+    <ProjectReference Include="..\DDD.Chess\DDD.Chess.csproj" />
+    <ProjectReference Include="..\Events.Db.Models\Events.Db.Models.csproj" />
   </ItemGroup>
 
 </Project>

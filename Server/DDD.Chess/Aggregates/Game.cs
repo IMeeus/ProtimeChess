@@ -6,22 +6,26 @@ using DDD.Chess.Identifiers;
 using DDD.Chess.ValueObjects;
 using DDD.Core;
 
-namespace DDD.Chess
+namespace DDD.Chess.Aggregates
 {
-    public class GameAggregate : AggregateRoot<GameId>
+    public class Game : AggregateRoot<GameId>
     {
         private GameState _state;
         private Color _currentPlayerColor;
         private Board _board;
 
-        public GameAggregate(GameId id) : base(id)
+        public Game(GameId id) : base(id)
         {
             _state = GameState.INITIAL;
             _currentPlayerColor = Color.WHITE;
             _board = BoardFactory.NewBoard();
         }
 
-        public void Start(StartGame command)
+        public Game(GameId id, IEnumerable<DomainEvent> events) : base(id, events)
+        {
+        }
+
+        public void Start()
         {
             if (_state != GameState.INITIAL)
             {

@@ -1,3 +1,4 @@
+using DDD.Chess.App.ServiceCollection;
 using Events.Db.ServiceCollection;
 
 namespace API

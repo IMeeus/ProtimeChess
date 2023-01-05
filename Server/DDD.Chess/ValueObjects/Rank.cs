@@ -2,7 +2,7 @@
 
 namespace DDD.Chess.ValueObjects
 {
-    internal class Rank : ValueObject
+    public class Rank : ValueObject
     {
         public int Index { get; init; }
 

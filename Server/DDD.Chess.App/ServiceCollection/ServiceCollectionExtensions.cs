@@ -1,8 +1,9 @@
 ﻿using MediatR;
+using Microsoft.Extensions.DependencyInjection;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 
-namespace Microsoft.Extensions.DependencyInjection
+namespace DDD.Chess.App.ServiceCollection
 {
     [ExcludeFromCodeCoverage]
     public static class ServiceCollectionExtensions
@@ -10,6 +11,7 @@ namespace Microsoft.Extensions.DependencyInjection
         public static IServiceCollection RegisterChessAppService(this IServiceCollection services)
         {
             services.AddMediatR(Assembly.GetExecutingAssembly());
+
             return services;
         }
     }

@@ -2,7 +2,7 @@
 
 namespace DDD.Chess.DomainEvents
 {
-    internal class GameStarted : DomainEvent
+    public class GameStarted : DomainEvent
     {
     }
 }

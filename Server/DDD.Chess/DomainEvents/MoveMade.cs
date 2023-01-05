@@ -2,7 +2,7 @@
 
 namespace DDD.Chess.DomainEvents
 {
-    internal class MoveMade : DomainEvent
+    public class MoveMade : DomainEvent
     {
     }
 }

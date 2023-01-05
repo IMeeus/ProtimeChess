@@ -1,11 +1,12 @@
-﻿using Events.Db.Exceptions;
-using Events.Db.Interfaces;
+﻿using DDD.Chess.App.Interfaces;
+using Events.Db.Exceptions;
 using Events.Db.Models.Aggregates;
 using Events.Db.Models.Events;
+using Microsoft.EntityFrameworkCore;
 
 namespace Events.Db.Repositories
 {
-    internal class GameEventRepository : IGameEventRespository
+    internal class GameEventRepository : IGameEventRepository
     {
         private readonly EventDbContext _dbContext;
 
@@ -27,7 +28,12 @@ namespace Events.Db.Repositories
             return entry.Entity;
         }
 
-        public async Task PushEvent<T>(int aggregateId, string eventData)
+        public async Task<IEnumerable<GameEvent>> ListEventsFrom(int aggregateId)
+        {
+            return await _dbContext.GameEvents.Where(e => e.GameId == aggregateId).ToListAsync();
+        }
+
+        public async Task PushEvent(int aggregateId, string eventType, string eventData)
         {
             var game = await _dbContext.Games.FindAsync(aggregateId);
 
@@ -42,7 +48,7 @@ namespace Events.Db.Repositories
             {
                 GameId = game.Id,
                 Order = game.Version,
-                EventType = nameof(T),
+                EventType = eventType,
                 EventData = eventData
             };
 

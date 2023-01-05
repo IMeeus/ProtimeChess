@@ -1,4 +1,4 @@
-﻿using Events.Db.Interfaces;
+﻿using DDD.Chess.App.Interfaces;
 using Events.Db.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 using System.Diagnostics.CodeAnalysis;
@@ -11,7 +11,7 @@ namespace Events.Db.ServiceCollection
         public static IServiceCollection RegisterEventsDatabase(this IServiceCollection services)
         {
             services.AddDbContext<EventDbContext>();
-            services.AddTransient<IGameEventRespository, GameEventRepository>();
+            services.AddTransient<IGameEventRepository, GameEventRepository>();
 
             return services;
         }

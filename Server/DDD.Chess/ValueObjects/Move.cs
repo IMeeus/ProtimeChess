@@ -1,6 +1,6 @@
 ﻿namespace DDD.Chess.ValueObjects
 {
-    internal class Move
+    public class Move
     {
         public Square StartSquare { get; init; }
         public Square TargetSquare { get; init; }
