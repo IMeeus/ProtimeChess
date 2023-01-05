@@ -10,15 +10,12 @@ namespace DDD.Chess
 {
     internal class GameAggregate : AggregateRoot<GameId>
     {
-        private readonly GameId _id;
-
         private GameState _state;
         private Color _currentPlayerColor;
         private Board _board;
 
         public GameAggregate(GameId id) : base(id)
         {
-            _id = id;
             _state = GameState.INITIAL;
             _currentPlayerColor = Color.WHITE;
             _board = BoardFactory.NewBoard();
@@ -90,7 +87,7 @@ namespace DDD.Chess
 
             if (!pieceAtStart.CanJump)
             {
-                var squaresTowardsTarget = startSquare.GetSquaresTowards(targetSquare).ToList();
+                var squaresTowardsTarget = startSquare.GetPathTo(targetSquare).ToList();
                 squaresTowardsTarget.Remove(targetSquare);
 
                 var anyPiecesBetweenStartAndTarget = squaresTowardsTarget.Any(square =>

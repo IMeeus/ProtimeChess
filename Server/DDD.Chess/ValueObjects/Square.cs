@@ -24,8 +24,6 @@ namespace DDD.Chess.ValueObjects
             return null;
         }
 
-        // Bestaat hier niets generiek voor?
-        // Generate collection door recursief method te callen tot die null returned...
         public IEnumerable<Square> AllUp()
         {
             Square? currentSquare = this;
@@ -203,7 +201,7 @@ namespace DDD.Chess.ValueObjects
             }
         }
 
-        public IEnumerable<Square> GetSquaresTowards(Square targetSquare)
+        public IEnumerable<Square> GetPathTo(Square targetSquare)
         {
             IEnumerable<Square>[] allRanges =
             {

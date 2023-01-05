@@ -1,9 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using DDD.Chess.App.Commands.StartGame;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace API.Controllers
 {
@@ -11,16 +8,19 @@ namespace API.Controllers
     [Route("api/v1/chess")]
     public class ChessController : ControllerBase
     {
-        [HttpGet("test")]
-        public IActionResult Test()
+        private readonly IMediator _mediator;
+
+        public ChessController(IMediator mediator)
         {
-            return Ok();
+            _mediator = mediator;
         }
 
         [HttpPost("startGame")]
-        public IActionResult StartGame()
+        public async Task<IActionResult> StartGame()
         {
-            return Ok();
+            StartGameCommand request = new(1);
+            StartGameResponse response = await _mediator.Send(request);
+            return Ok(response);
         }
     }
 }
