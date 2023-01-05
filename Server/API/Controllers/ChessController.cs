@@ -1,4 +1,5 @@
-﻿using DDD.Chess.App.Commands.StartGame;
+﻿using DDD.Chess.App.Commands.CreateGame;
+using DDD.Chess.App.Commands.StartGame;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,11 +16,19 @@ namespace API.Controllers
             _mediator = mediator;
         }
 
-        [HttpPost("startGame")]
+        [HttpPost("createGame")]
+        public async Task<IActionResult> CreateGame()
+        {
+            CreateGameCommand command = new();
+            CreateGameResponse response = await _mediator.Send(command);
+            return Ok(response);
+        }
+
+        [HttpPut("startGame")]
         public async Task<IActionResult> StartGame()
         {
-            StartGameCommand request = new(1);
-            StartGameResponse response = await _mediator.Send(request);
+            StartGameCommand command = new(1);
+            StartGameResponse response = await _mediator.Send(command);
             return Ok(response);
         }
     }

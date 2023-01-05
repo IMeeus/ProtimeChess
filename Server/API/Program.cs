@@ -1,3 +1,5 @@
+using Events.Db.ServiceCollection;
+
 namespace API
 {
     public class Program
@@ -20,6 +22,7 @@ namespace API
                 });
             });
 
+            builder.Services.RegisterEventsDatabase();
             builder.Services.RegisterChessAppService();
 
             var app = builder.Build();
