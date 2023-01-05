@@ -1,6 +1,6 @@
 ﻿namespace DDD.Chess.Commands
 {
-    internal class StartGame
+    public class StartGame
     {
     }
 }

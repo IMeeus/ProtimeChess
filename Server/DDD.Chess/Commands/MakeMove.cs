@@ -2,7 +2,7 @@
 
 namespace DDD.Chess.Commands
 {
-    internal class MakeMove
+    public class MakeMove
     {
         public Move Move { get; init; }
 

@@ -8,7 +8,7 @@ using DDD.Core;
 
 namespace DDD.Chess
 {
-    internal class GameAggregate : AggregateRoot<GameId>
+    public class GameAggregate : AggregateRoot<GameId>
     {
         private GameState _state;
         private Color _currentPlayerColor;

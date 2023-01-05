@@ -1,4 +1,4 @@
 ﻿namespace DDD.Chess.Identifiers
 {
-    record GameId(Guid Value);
+    public record GameId(Guid Value);
 }
