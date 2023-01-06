@@ -14,7 +14,7 @@ namespace DDD.Chess.ValueObjects
 
         public Dictionary<Square, Piece?> CopyState() => new(_state);
 
-        public Piece? GetPiece(Square square)
+        public Piece? GetPieceOn(Square square)
         {
             return _state[square];
         }
@@ -39,7 +39,7 @@ namespace DDD.Chess.ValueObjects
         {
             var boardState = CopyState();
 
-            var pieceOnStartSquare = GetPiece(startSquare);
+            var pieceOnStartSquare = GetPieceOn(startSquare);
             boardState[startSquare] = null;
             boardState[targetSquare] = pieceOnStartSquare;
 

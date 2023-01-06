@@ -36,7 +36,7 @@ namespace DDD.Chess.ValueObjects.Pieces
             {
                 foreach (var square in moveRange)
                 {
-                    var pieceOnSquare = board.GetPiece(square);
+                    var pieceOnSquare = board.GetPieceOn(square);
                     if (pieceOnSquare is null)
                     {
                         validTargetSquares.Add(square);
@@ -55,36 +55,58 @@ namespace DDD.Chess.ValueObjects.Pieces
 
             // TODO: Check if king square + intermediates are in check
 
-            // Can Castle from A1 to D1
-            if (currentSquare == new Square(File.A, Rank.ONE)
-                && moveHistory.Any(move => move.StartSquare == new Square(File.A, Rank.ONE))
-                && moveHistory.Any(move => move.StartSquare == new Square(File.E, Rank.ONE)))
+            if (Color == Color.WHITE)
             {
-                validTargetSquares.Remove(new Square(File.D, Rank.ONE));
+                // Castling: A1 to D1
+                if (currentSquare == new Square(File.A, Rank.ONE))
+                {
+                    var rookHasMoved = moveHistory.Any(move => move.StartSquare == new Square(File.A, Rank.ONE));
+                    var kingHasMoved = moveHistory.Any(move => move.StartSquare == new Square(File.E, Rank.ONE));
+
+                    if (rookHasMoved || kingHasMoved)
+                    {
+                        validTargetSquares.Remove(new Square(File.D, Rank.ONE));
+                    }
+                }
+
+                // Castling: H1 to F1
+                if (currentSquare == new Square(File.H, Rank.ONE))
+                {
+                    var rookHasMoved = moveHistory.Any(move => move.StartSquare == new Square(File.H, Rank.ONE));
+                    var kingHasMoved = moveHistory.Any(move => move.StartSquare == new Square(File.E, Rank.ONE));
+
+                    if (rookHasMoved || kingHasMoved)
+                    {
+                        validTargetSquares.Remove(new Square(File.F, Rank.ONE));
+                    }
+                }
             }
 
-            // Can Castle from H1 to F1
-            if (currentSquare == new Square(File.H, Rank.ONE)
-                && moveHistory.Any(move => move.StartSquare == new Square(File.H, Rank.ONE))
-                && moveHistory.Any(move => move.StartSquare == new Square(File.E, Rank.ONE)))
+            if (Color == Color.BLACK)
             {
-                validTargetSquares.Remove(new Square(File.F, Rank.ONE));
-            }
+                // Castling: A8 to D8
+                if (currentSquare == new Square(File.A, Rank.EIGHT))
+                {
+                    var rookHasMoved = moveHistory.Any(move => move.StartSquare == new Square(File.A, Rank.EIGHT));
+                    var kingHasMoved = moveHistory.Any(move => move.StartSquare == new Square(File.E, Rank.EIGHT));
 
-            // Can Castle from A8 to D8
-            if (currentSquare == new Square(File.A, Rank.EIGHT)
-                && moveHistory.Any(move => move.StartSquare == new Square(File.A, Rank.EIGHT))
-                && moveHistory.Any(move => move.StartSquare == new Square(File.E, Rank.EIGHT)))
-            {
-                validTargetSquares.Remove(new Square(File.D, Rank.EIGHT));
-            }
+                    if (rookHasMoved || kingHasMoved)
+                    {
+                        validTargetSquares.Remove(new Square(File.D, Rank.EIGHT));
+                    }
+                }
 
-            // Can Castle from H8 to F8
-            if (currentSquare == new Square(File.H, Rank.EIGHT)
-                && moveHistory.Any(move => move.StartSquare == new Square(File.H, Rank.EIGHT))
-                && moveHistory.Any(move => move.StartSquare == new Square(File.E, Rank.EIGHT)))
-            {
-                validTargetSquares.Remove(new Square(File.F, Rank.EIGHT));
+                // Castling: H8 to F8
+                if (currentSquare == new Square(File.H, Rank.EIGHT))
+                {
+                    var rookHasMoved = moveHistory.Any(move => move.StartSquare == new Square(File.H, Rank.EIGHT));
+                    var kingHasMoved = moveHistory.Any(move => move.StartSquare == new Square(File.E, Rank.EIGHT));
+
+                    if (rookHasMoved || kingHasMoved)
+                    {
+                        validTargetSquares.Remove(new Square(File.F, Rank.EIGHT));
+                    }
+                }
             }
 
             return validTargetSquares;
