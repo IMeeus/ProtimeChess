@@ -1,4 +1,4 @@
-﻿namespace Events.Db.Models.Events
+﻿namespace Model.Events
 {
     public class GameEvent
     {

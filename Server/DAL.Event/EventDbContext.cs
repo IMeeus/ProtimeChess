@@ -1,6 +1,6 @@
-﻿using Events.Db.Models.Aggregates;
-using Events.Db.Models.Events;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Model.Aggregates;
+using Model.Events;
 
 namespace Events.Db
 {

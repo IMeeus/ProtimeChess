@@ -1,3 +1,4 @@
+using DDD.Chess.Aggregates;
 using DDD.Chess.Commands;
 using DDD.Chess.Exceptions;
 using DDD.Chess.Identifiers;
@@ -13,12 +14,11 @@ namespace DDD.Chess.Tests
         {
             var gameId = new GameId(1);
             var game = new Game(gameId);
-            var startGameCommand = new StartGame();
 
-            game.Start(startGameCommand);
+            game.Start();
 
             var exception = Assert.Throws<ChessException>(() =>
-                game.Start(startGameCommand)
+                game.Start()
             );
             Assert.That(exception.Message, Is.EqualTo(ChessException.GameNotInInitialState.Message));
         }
@@ -45,8 +45,7 @@ namespace DDD.Chess.Tests
             var gameId = new GameId(1);
             var game = new Game(gameId);
 
-            var startGameCommand = new StartGame();
-            game.Start(startGameCommand);
+            game.Start();
 
             var startSquare = new Square(File.A, Rank.SEVEN);
             var endSquare = new Square(File.A, Rank.SIX);
@@ -64,8 +63,7 @@ namespace DDD.Chess.Tests
             var gameId = new GameId(1);
             var game = new Game(gameId);
 
-            var startGameCommand = new StartGame();
-            game.Start(startGameCommand);
+            game.Start();
 
             var startSquare = new Square(File.A, Rank.FIVE);
             var endSquare = new Square(File.A, Rank.FOUR);

@@ -1,7 +1,7 @@
-﻿using Events.Db.Models.Aggregates;
-using Events.Db.Models.Events;
+﻿using Model.Aggregates;
+using Model.Events;
 
-namespace DDD.Chess.App.Interfaces
+namespace BLL.Interfaces
 {
     public interface IGameEventRepository
     {

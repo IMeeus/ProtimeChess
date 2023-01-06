@@ -1,4 +1,4 @@
-﻿using DDD.Chess.App.Interfaces;
+﻿using BLL.Interfaces;
 using Events.Db.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;

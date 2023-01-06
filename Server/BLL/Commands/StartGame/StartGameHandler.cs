@@ -1,11 +1,11 @@
-﻿using DDD.Chess.Aggregates;
-using DDD.Chess.App.AggregateFactories;
-using DDD.Chess.App.Interfaces;
+﻿using BLL.AggregateFactories;
+using BLL.Interfaces;
+using DDD.Chess.Aggregates;
 using DDD.Chess.Identifiers;
 using MediatR;
 using Newtonsoft.Json;
 
-namespace DDD.Chess.App.Commands.StartGame
+namespace BLL.Commands.StartGame
 {
     internal class StartGameHandler : IRequestHandler<StartGameCommand, StartGameResponse>
     {
@@ -23,7 +23,6 @@ namespace DDD.Chess.App.Commands.StartGame
             GameId gameId = new(request.GameId);
 
             Game game = await _gameFactory.ConstructLatest(gameId);
-            game.Start();
 
             foreach (var @event in game.Events)
             {

@@ -1,8 +1,8 @@
-﻿using DDD.Chess.App.Interfaces;
-using Events.Db.Models.Aggregates;
+﻿using BLL.Interfaces;
 using MediatR;
+using Model.Aggregates;
 
-namespace DDD.Chess.App.Commands.CreateGame
+namespace BLL.Commands.CreateGame
 {
     internal class CreateGameHandler : IRequestHandler<CreateGameCommand, CreateGameResponse>
     {

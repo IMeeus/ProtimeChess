@@ -1,4 +1,4 @@
-﻿namespace DDD.Chess.App.Commands.CreateGame
+﻿namespace BLL.Commands.CreateGame
 {
     public class CreateGameResponse
     {

@@ -1,5 +1,4 @@
-﻿using DDD.Chess.ValueObjects.Pieces;
-using DDD.Core;
+﻿using DDD.Core;
 
 namespace DDD.Chess.ValueObjects
 {
@@ -30,7 +29,8 @@ namespace DDD.Chess.ValueObjects
 
         public bool IsCheck(Color color)
         {
-            var king = _state.Where(kv => kv.Value is King && kv.Value.Color == Color.WHITE);
+            //var king = _state.Where(kv => kv.Value is King && kv.Value.Color == Color.WHITE);
+            return false;
         }
 
         protected override IEnumerable<object> GetAtomicValues()

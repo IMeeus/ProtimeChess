@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 
-namespace DDD.Chess.App.ServiceCollection
+namespace BLL.ServiceCollection
 {
     [ExcludeFromCodeCoverage]
     public static class ServiceCollectionExtensions

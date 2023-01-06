@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace DDD.Chess.App.Commands.CreateGame
+namespace BLL.Commands.CreateGame
 {
     public class CreateGameCommand : IRequest<CreateGameResponse>
     {

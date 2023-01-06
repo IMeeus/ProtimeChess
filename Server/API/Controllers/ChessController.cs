@@ -1,5 +1,5 @@
-﻿using DDD.Chess.App.Commands.CreateGame;
-using DDD.Chess.App.Commands.StartGame;
+﻿using BLL.Commands.CreateGame;
+using BLL.Commands.StartGame;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
