@@ -46,13 +46,12 @@ namespace DDD.Chess.ValueObjects.Pieces
                     {
                         validTargetSquares.Add(square);
                     }
+                    else if (pieceOnSquare.Color != Color)
+                    {
+                        validTargetSquares.Add(square);
+                    }
                     else
                     {
-                        if (pieceOnSquare.Color != Color)
-                        {
-                            validTargetSquares.Add(square);
-                        }
-
                         break;
                     }
                 }
