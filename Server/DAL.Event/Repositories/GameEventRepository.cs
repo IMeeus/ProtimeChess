@@ -28,7 +28,7 @@ namespace Events.Db.Repositories
             return entry.Entity;
         }
 
-        public async Task<IEnumerable<GameEvent>> ListEventsFrom(int aggregateId)
+        public async Task<IEnumerable<GameEvent>> ListEventsOf(int aggregateId)
         {
             return await _dbContext.GameEvents.Where(e => e.GameId == aggregateId).ToListAsync();
         }

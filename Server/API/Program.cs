@@ -23,7 +23,8 @@ namespace API
                 });
             });
 
-            builder.Services.RegisterEventsDatabase(builder.Configuration.GetConnectionString("Default"));
+            var connectionString = builder.Configuration.GetConnectionString("Default");
+            builder.Services.RegisterEventsDatabase(connectionString);
             builder.Services.RegisterChessAppService();
 
             var app = builder.Build();

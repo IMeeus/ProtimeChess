@@ -9,6 +9,6 @@ namespace BLL.Interfaces
 
         Task PushEvent(int aggregateId, string eventType, string eventData);
 
-        Task<IEnumerable<GameEvent>> ListEventsFrom(int aggregateId);
+        Task<IEnumerable<GameEvent>> ListEventsOf(int aggregateId);
     }
 }

@@ -8,5 +8,9 @@ namespace Events.Db
     {
         public DbSet<Game> Games { get; set; } = null!;
         public DbSet<GameEvent> GameEvents { get; set; } = null!;
+
+        public EventDbContext(DbContextOptions<EventDbContext> options) : base(options)
+        {
+        }
     }
 }

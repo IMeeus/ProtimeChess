@@ -1,5 +1,5 @@
-﻿using DDD.Chess.Aggregates;
-using BLL.Interfaces;
+﻿using BLL.Interfaces;
+using DDD.Chess.Aggregates;
 using DDD.Chess.Identifiers;
 using DDD.Core;
 using Newtonsoft.Json;
@@ -17,7 +17,7 @@ namespace BLL.AggregateFactories
 
         public async Task<Game> ConstructLatest(GameId gameId)
         {
-            var gameEvents = await _eventRepository.ListEventsFrom(gameId.Value);
+            var gameEvents = await _eventRepository.ListEventsOf(gameId.Value);
 
             IEnumerable<DomainEvent> domainEvents = gameEvents.Select(e => JsonConvert.DeserializeObject<DomainEvent>(e.EventData));
 
