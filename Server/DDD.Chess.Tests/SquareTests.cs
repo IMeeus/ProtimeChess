@@ -2,7 +2,7 @@
 
 using File = DDD.Chess.ValueObjects.File;
 
-namespace DDD.Chess.Tests
+namespace Tests
 {
     internal class SquareTests
     {

@@ -1,3 +1,3 @@
 ﻿using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo("DDD.Chess.Tests")]
+[assembly: InternalsVisibleTo("Tests")]

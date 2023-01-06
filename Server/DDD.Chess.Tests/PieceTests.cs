@@ -3,7 +3,7 @@ using DDD.Chess.ValueObjects.Pieces;
 
 using File = DDD.Chess.ValueObjects.File;
 
-namespace DDD.Chess.Tests
+namespace Tests
 {
     internal class PieceTests
     {

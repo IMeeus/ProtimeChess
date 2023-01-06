@@ -23,6 +23,7 @@ namespace BLL.Commands.StartGame
             GameId gameId = new(request.GameId);
 
             Game game = await _gameFactory.ConstructLatest(gameId);
+            game.Start();
 
             foreach (var @event in game.Events)
             {

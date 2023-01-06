@@ -5,7 +5,7 @@ using DDD.Chess.Identifiers;
 using DDD.Chess.ValueObjects;
 using File = DDD.Chess.ValueObjects.File;
 
-namespace DDD.Chess.Tests
+namespace Tests
 {
     public class GameTests
     {
