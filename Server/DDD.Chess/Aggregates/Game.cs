@@ -43,15 +43,6 @@ namespace DDD.Chess.Aggregates
             RaiseEvent(new GameStarted());
         }
 
-        // Rules:
-        // - within range of piece
-        // - can't pass through pieces, unless knight
-        // - can't attack friendly pieces
-        // - move can't result in check
-
-        // Special:
-        // - En Passant
-        // - Castling
         public void MakeMove(MakeMove command)
         {
             if (State != GameState.RUNNING)
@@ -74,7 +65,12 @@ namespace DDD.Chess.Aggregates
 
             var newBoard = pieceAtStart.Move(Board, command.Move, _moveHistory);
 
-            RaiseEvent(new MoveMade());
+            if (newBoard.IsKingChecked(CurrentPlayerColor, _moveHistory))
+            {
+                throw ChessException.CantMakeMoveResultingInCheck;
+            }
+
+            RaiseEvent(new MoveMade(command.Move));
         }
 
         protected override void When(DomainEvent domainEvent)
@@ -94,7 +90,10 @@ namespace DDD.Chess.Aggregates
 
         private void Handle(MoveMade @event)
         {
-            throw new NotImplementedException();
+            Move move = @event.Move;
+            Piece pieceAtStart = Board.GetPieceOn(move.StartSquare)!;
+
+            Board = pieceAtStart.Move(Board, move, _moveHistory);
         }
     }
 }

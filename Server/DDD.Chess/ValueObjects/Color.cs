@@ -12,8 +12,12 @@
             _value = value;
         }
 
-        public void GetOpposite(Color color)
+        public Color GetOpposite()
         {
+            if (_value == "White")
+                return BLACK;
+            else
+                return WHITE;
         }
 
         public override string ToString()

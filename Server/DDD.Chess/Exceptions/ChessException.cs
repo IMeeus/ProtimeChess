@@ -26,6 +26,9 @@
         public static ChessException CantMoveThroughPieces
             => new("Can't move through pieces!");
 
+        public static ChessException CantMakeMoveResultingInCheck
+            => new("Can't make move resulting in check!");
+
         private ChessException(string message) : base(message)
         {
         }

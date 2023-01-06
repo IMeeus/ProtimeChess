@@ -29,13 +29,26 @@ namespace DDD.Chess.ValueObjects
             return _state.Single(kv => kv.Value is King && kv.Value.Color == color).Key;
         }
 
-        public bool IsKingChecked(Color color)
+        public bool IsKingChecked(Color color, List<Move> moveHistory)
         {
             var kingSquare = GetKingSquare(color);
 
-            foreach (var piece in _state.Values.Where(piece => piece.Color)
+            var oppositeSquarePieces = _state.Where(squarePiece => squarePiece.Value?.Color == color.GetOpposite());
+
+            foreach (var squarePiece in oppositeSquarePieces)
             {
+                var square = squarePiece.Key;
+                var piece = squarePiece.Value;
+
+                var validTargetSquares = piece!.GetValidTargetSquares(this, square, moveHistory);
+
+                if (validTargetSquares.Any(square => square == kingSquare))
+                {
+                    return true;
+                }
             }
+
+            return false;
         }
 
         public Board MovePiece(Square startSquare, Square targetSquare)
