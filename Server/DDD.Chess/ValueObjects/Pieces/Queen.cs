@@ -1,5 +1,4 @@
 ﻿using DDD.Chess.Exceptions;
-using DDD.Chess.ValueObjects.Pieces.Strategies;
 
 namespace DDD.Chess.ValueObjects.Pieces
 {
@@ -9,19 +8,7 @@ namespace DDD.Chess.ValueObjects.Pieces
         {
         }
 
-        public override IEnumerable<Square> GetMoveRange(Square currentSquare)
-        {
-            var strategies = new IMoveStategy[]
-            {
-                new HorizontalMoveStrategy(MoveReach.UNLIMITED),
-                new VerticalMoveStategy(MoveReach.UNLIMITED),
-                new DiagonalMoveStrategy(MoveReach.UNLIMITED)
-            };
-
-            return strategies.SelectMany(s => s.GetRange(currentSquare));
-        }
-
-        public IEnumerable<Square> GetValidTargetSquares(Board board, Square currentSquare, List<Move> moveHistory)
+        public override IEnumerable<Square> GetValidTargetSquares(Board board, Square currentSquare, List<Move> moveHistory)
         {
             IEnumerable<Square>[] moveRanges =
             {
@@ -60,7 +47,7 @@ namespace DDD.Chess.ValueObjects.Pieces
             return validTargetSquares;
         }
 
-        public Board Move(Board board, Move move, List<Move> moveHistory)
+        public override Board Move(Board board, Move move, List<Move> moveHistory)
         {
             var validTargetSquares = GetValidTargetSquares(board, move.StartSquare, moveHistory);
 

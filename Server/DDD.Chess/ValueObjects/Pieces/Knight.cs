@@ -1,22 +1,14 @@
 ﻿using DDD.Chess.Exceptions;
-using DDD.Chess.ValueObjects.Pieces.Strategies;
 
 namespace DDD.Chess.ValueObjects.Pieces
 {
     internal class Knight : Piece
     {
-        private readonly IMoveStategy _moveStategy = new KnightMoveStrategy();
-
         public Knight(Color color) : base(color, canJump: true)
         {
         }
 
-        public override IEnumerable<Square> GetMoveRange(Square currentSquare)
-        {
-            return _moveStategy.GetRange(currentSquare);
-        }
-
-        public IEnumerable<Square> GetValidTargetSquares(Board board, Square currentSquare, List<Move> moveHistory)
+        public override IEnumerable<Square> GetValidTargetSquares(Board board, Square currentSquare, List<Move> moveHistory)
         {
             List<Square?> moveRange = new()
             {
@@ -50,7 +42,7 @@ namespace DDD.Chess.ValueObjects.Pieces
             return validTargetSquares;
         }
 
-        public Board Move(Board board, Move move, List<Move> moveHistory)
+        public override Board Move(Board board, Move move, List<Move> moveHistory)
         {
             var validTargetSquares = GetValidTargetSquares(board, move.StartSquare, moveHistory);
 

@@ -15,12 +15,9 @@ namespace DDD.Chess.ValueObjects
             CanJump = canJump;
         }
 
-        public abstract IEnumerable<Square> GetMoveRange(Square fromSquare);
+        public abstract IEnumerable<Square> GetValidTargetSquares(Board board, Square currentSquare, List<Move> moveHistory);
 
-        public virtual IEnumerable<Square> GetAttackRange(Square fromSquare)
-        {
-            return GetMoveRange(fromSquare);
-        }
+        public abstract Board Move(Board board, Move move, List<Move> moveHistory);
 
         protected override IEnumerable<object> GetAtomicValues()
         {

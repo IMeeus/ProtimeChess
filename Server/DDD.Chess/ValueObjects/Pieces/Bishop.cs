@@ -8,20 +8,7 @@ namespace DDD.Chess.ValueObjects.Pieces
         {
         }
 
-        public override IEnumerable<Square> GetMoveRange(Square fromSquare)
-        {
-            IEnumerable<Square>[] ranges =
-            {
-                fromSquare.GetAllUpLeft(),
-                fromSquare.GetAllUpRight(),
-                fromSquare.GetAllDownLeft(),
-                fromSquare.GetAllDownRight()
-            };
-
-            return ranges.SelectMany(x => x);
-        }
-
-        public IEnumerable<Square> GetValidTargetSquares(Board board, Square currentSquare, List<Move> moveHistory)
+        public override IEnumerable<Square> GetValidTargetSquares(Board board, Square currentSquare, List<Move> moveHistory)
         {
             IEnumerable<Square>[] moveRanges =
             {
@@ -56,7 +43,7 @@ namespace DDD.Chess.ValueObjects.Pieces
             return validTargetSquares;
         }
 
-        public Board Move(Board board, Move move, List<Move> moveHistory)
+        public override Board Move(Board board, Move move, List<Move> moveHistory)
         {
             var validTargetSquares = GetValidTargetSquares(board, move.StartSquare, moveHistory);
 
