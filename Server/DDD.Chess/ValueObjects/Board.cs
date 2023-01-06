@@ -2,7 +2,7 @@
 
 namespace DDD.Chess.ValueObjects
 {
-    internal class Board : ValueObject
+    public class Board : ValueObject
     {
         private readonly Dictionary<Square, Piece?> _state;
 
@@ -10,6 +10,8 @@ namespace DDD.Chess.ValueObjects
         {
             _state = state;
         }
+
+        public Dictionary<Square, Piece?> State => new(_state);
 
         public Piece? GetPieceOnSquare(Square square)
         {

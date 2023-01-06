@@ -1,6 +1,6 @@
 ﻿namespace DDD.Chess.ValueObjects
 {
-    internal enum Color
+    public enum Color
     {
         BLACK, WHITE
     }

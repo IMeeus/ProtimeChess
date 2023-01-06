@@ -1,4 +1,4 @@
-﻿namespace Model.Aggregates
+﻿namespace BLL.Infrastructure.Models
 {
     public class Game
     {

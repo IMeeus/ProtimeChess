@@ -1,10 +1,10 @@
-﻿using BLL.Interfaces;
+﻿using BLL.Infrastructure.Interfaces;
 using DDD.Chess.Aggregates;
 using DDD.Chess.Identifiers;
 using DDD.Core;
 using Newtonsoft.Json;
 
-namespace BLL.AggregateFactories
+namespace BLL.Domain.Factories
 {
     internal class GameFactory
     {

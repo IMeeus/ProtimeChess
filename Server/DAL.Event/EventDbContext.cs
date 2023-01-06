@@ -1,6 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Model.Aggregates;
-using Model.Events;
+﻿using BLL.Infrastructure.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Events.Db
 {

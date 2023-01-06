@@ -1,4 +1,4 @@
-﻿using BLL.Interfaces;
+﻿using BLL.Infrastructure.Interfaces;
 using Events.Db.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;

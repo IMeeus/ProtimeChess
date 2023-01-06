@@ -1,5 +1,5 @@
-﻿using BLL.AggregateFactories;
-using BLL.Interfaces;
+﻿using BLL.Domain.Factories;
+using BLL.Infrastructure.Interfaces;
 using DDD.Chess.Aggregates;
 using DDD.Chess.Identifiers;
 using MediatR;

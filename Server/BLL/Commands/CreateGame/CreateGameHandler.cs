@@ -1,6 +1,6 @@
-﻿using BLL.Interfaces;
+﻿using BLL.Infrastructure.Interfaces;
+using BLL.Infrastructure.Models;
 using MediatR;
-using Model.Aggregates;
 
 namespace BLL.Commands.CreateGame
 {

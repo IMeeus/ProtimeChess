@@ -1,8 +1,7 @@
-﻿using BLL.Interfaces;
+﻿using BLL.Infrastructure.Interfaces;
+using BLL.Infrastructure.Models;
 using Events.Db.Exceptions;
 using Microsoft.EntityFrameworkCore;
-using Model.Aggregates;
-using Model.Events;
 
 namespace Events.Db.Repositories
 {

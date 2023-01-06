@@ -2,7 +2,7 @@
 
 namespace DDD.Chess.ValueObjects
 {
-    internal abstract class Piece : ValueObject
+    public abstract class Piece : ValueObject
     {
         public Color Color { get; init; }
         public bool HasMoved { get; init; }

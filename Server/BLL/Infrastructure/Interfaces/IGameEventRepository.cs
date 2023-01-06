@@ -1,7 +1,4 @@
-﻿using Model.Aggregates;
-using Model.Events;
-
-namespace BLL.Interfaces
+﻿namespace BLL.Infrastructure.Interfaces
 {
     public interface IGameEventRepository
     {
