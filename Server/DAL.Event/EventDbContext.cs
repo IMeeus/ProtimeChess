@@ -12,5 +12,14 @@ namespace Events.Db
         public EventDbContext(DbContextOptions<EventDbContext> options) : base(options)
         {
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<GameEvent>()
+                .HasOne<Game>()
+                .WithMany();
+        }
     }
 }
