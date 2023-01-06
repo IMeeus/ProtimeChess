@@ -5,14 +5,10 @@ namespace DDD.Chess.ValueObjects
     public abstract class Piece : ValueObject
     {
         public Color Color { get; init; }
-        public bool HasMoved { get; init; }
-        public bool CanJump { get; set; }
 
-        public Piece(Color color, bool hasMoved = false, bool canJump = false)
+        public Piece(Color color)
         {
             Color = color;
-            HasMoved = hasMoved;
-            CanJump = canJump;
         }
 
         public abstract IEnumerable<Square> GetValidTargetSquares(Board board, Square currentSquare, List<Move> moveHistory);

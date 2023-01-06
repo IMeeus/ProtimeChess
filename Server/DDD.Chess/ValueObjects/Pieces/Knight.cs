@@ -4,7 +4,7 @@ namespace DDD.Chess.ValueObjects.Pieces
 {
     internal class Knight : Piece
     {
-        public Knight(Color color) : base(color, canJump: true)
+        public Knight(Color color) : base(color)
         {
         }
 
