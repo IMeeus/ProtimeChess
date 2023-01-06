@@ -4,16 +4,18 @@ namespace DDD.Chess.ValueObjects
 {
     public class File : ValueObject
     {
+        private readonly string _value;
+
         public int Index { get; init; }
 
-        public static File A => new(0);
-        public static File B => new(1);
-        public static File C => new(2);
-        public static File D => new(3);
-        public static File E => new(4);
-        public static File F => new(5);
-        public static File G => new(6);
-        public static File H => new(7);
+        public static File A => new(0, "A");
+        public static File B => new(1, "B");
+        public static File C => new(2, "C");
+        public static File D => new(3, "D");
+        public static File E => new(4, "E");
+        public static File F => new(5, "F");
+        public static File G => new(6, "G");
+        public static File H => new(7, "H");
 
         public static File WithIndex(int index)
         {
@@ -29,9 +31,10 @@ namespace DDD.Chess.ValueObjects
             }
         }
 
-        private File(int index)
+        private File(int index, string value)
         {
             Index = index;
+            _value = value;
         }
 
         public static bool IsValidIndex(int fileIndex) => fileIndex >= 0 && fileIndex < Values.Count();
@@ -49,6 +52,11 @@ namespace DDD.Chess.ValueObjects
         protected override IEnumerable<object> GetAtomicValues()
         {
             yield return Index;
+        }
+
+        public override string ToString()
+        {
+            return _value;
         }
     }
 }

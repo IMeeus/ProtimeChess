@@ -1,7 +1,7 @@
 ﻿namespace BLL.ViewModels
 {
-    internal class BoardVM
+    public class BoardVM
     {
-        public Dictionary<string, string>? State { get; set; }
+        public Dictionary<string, string?>? State { get; set; }
     }
 }

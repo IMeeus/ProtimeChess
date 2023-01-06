@@ -1,7 +1,20 @@
 ﻿namespace DDD.Chess.ValueObjects
 {
-    public enum Color
+    public class Color
     {
-        BLACK, WHITE
+        private readonly string _value;
+
+        public static Color BLACK => new("Black");
+        public static Color WHITE => new("White");
+
+        public Color(string value)
+        {
+            _value = value;
+        }
+
+        public override string ToString()
+        {
+            return _value;
+        }
     }
 }

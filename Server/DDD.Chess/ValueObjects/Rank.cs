@@ -50,5 +50,10 @@ namespace DDD.Chess.ValueObjects
         {
             yield return Index;
         }
+
+        public override string ToString()
+        {
+            return Index.ToString();
+        }
     }
 }

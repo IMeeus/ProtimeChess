@@ -21,8 +21,4 @@
     <ProjectReference Include="..\DDD.Chess\DDD.Chess.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Domain\Dozers\Interfaces\" />
-  </ItemGroup>
-
 </Project>

@@ -1,4 +1,6 @@
-﻿namespace BLL.Infrastructure.Interfaces
+﻿using BLL.Infrastructure.Models;
+
+namespace BLL.Infrastructure.Interfaces
 {
     public interface IGameEventRepository
     {

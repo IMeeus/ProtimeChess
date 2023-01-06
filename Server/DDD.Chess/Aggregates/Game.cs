@@ -10,24 +10,30 @@ namespace DDD.Chess.Aggregates
 {
     public class Game : AggregateRoot<GameId>
     {
-        private GameState _state;
-        private Color _currentPlayerColor;
-        private Board _board;
+        public GameState State { get; private set; }
+        public Color CurrentPlayerColor { get; private set; }
+        public Board Board { get; private set; }
 
         public Game(GameId id) : base(id)
         {
-            _state = GameState.INITIAL;
-            _currentPlayerColor = Color.WHITE;
-            _board = BoardFactory.NewBoard();
+            Initialize();
         }
 
         public Game(GameId id, IEnumerable<DomainEvent> events) : base(id, events)
         {
+            Initialize();
+        }
+
+        private void Initialize()
+        {
+            State = GameState.INITIAL;
+            CurrentPlayerColor = Color.WHITE;
+            Board = BoardFactory.NewBoard();
         }
 
         public void Start()
         {
-            if (_state != GameState.INITIAL)
+            if (State != GameState.INITIAL)
             {
                 throw ChessException.GameNotInInitialState;
             }
@@ -46,26 +52,26 @@ namespace DDD.Chess.Aggregates
         // - Castling
         public void MakeMove(MakeMove command)
         {
-            if (_state != GameState.RUNNING)
+            if (State != GameState.RUNNING)
             {
                 throw ChessException.GameNotInRunningState;
             }
 
             var startSquare = command.Move.StartSquare;
-            var pieceAtStart = _board.GetPieceOnSquare(startSquare);
+            var pieceAtStart = Board.GetPieceOnSquare(startSquare);
 
             if (pieceAtStart is null)
             {
                 throw ChessException.NoPieceOnStartSquare;
             }
 
-            if (pieceAtStart.Color != _currentPlayerColor)
+            if (pieceAtStart.Color != CurrentPlayerColor)
             {
                 throw ChessException.InvalidTurn;
             }
 
             var targetSquare = command.Move.TargetSquare;
-            var pieceAtTarget = _board.GetPieceOnSquare(targetSquare);
+            var pieceAtTarget = Board.GetPieceOnSquare(targetSquare);
 
             if (pieceAtTarget is null) // not capturing
             {
@@ -77,7 +83,7 @@ namespace DDD.Chess.Aggregates
             }
             else // capturing
             {
-                if (pieceAtTarget.Color == _currentPlayerColor)
+                if (pieceAtTarget.Color == CurrentPlayerColor)
                 {
                     throw ChessException.CanNotCaptureFriendlyPieces;
                 }
@@ -96,7 +102,7 @@ namespace DDD.Chess.Aggregates
 
                 var anyPiecesBetweenStartAndTarget = squaresTowardsTarget.Any(square =>
                 {
-                    var pieceOnSquare = _board.GetPieceOnSquare(square);
+                    var pieceOnSquare = Board.GetPieceOnSquare(square);
                     return pieceOnSquare is not null;
                 });
 
@@ -121,7 +127,7 @@ namespace DDD.Chess.Aggregates
 
         private void Handle(GameStarted @event)
         {
-            _state = GameState.RUNNING;
+            State = GameState.RUNNING;
         }
 
         private void Handle(MoveMade @event)

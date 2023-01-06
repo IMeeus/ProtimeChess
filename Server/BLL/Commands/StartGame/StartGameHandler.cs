@@ -12,10 +12,10 @@ namespace BLL.Commands.StartGame
         private readonly IGameEventRepository _gameEventRepository;
         private readonly GameFactory _gameFactory;
 
-        public StartGameHandler(IGameEventRepository gameEventRepository)
+        public StartGameHandler(IGameEventRepository gameEventRepository, GameFactory gameFactory)
         {
             _gameEventRepository = gameEventRepository;
-            _gameFactory = new GameFactory(_gameEventRepository);
+            _gameFactory = gameFactory;
         }
 
         public async Task<StartGameResponse> Handle(StartGameCommand request, CancellationToken cancellationToken)

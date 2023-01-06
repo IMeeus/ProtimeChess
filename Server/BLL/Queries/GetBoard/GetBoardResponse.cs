@@ -1,7 +1,14 @@
-﻿namespace BLL.Queries.GetBoard
+﻿using BLL.ViewModels;
+
+namespace BLL.Queries.GetBoard
 {
     public class GetBoardResponse
     {
-        public int MyProperty { get; set; }
+        public BoardVM Board { get; init; }
+
+        public GetBoardResponse(BoardVM board)
+        {
+            Board = board;
+        }
     }
 }

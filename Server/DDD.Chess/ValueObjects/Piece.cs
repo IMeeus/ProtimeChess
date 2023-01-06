@@ -26,5 +26,10 @@ namespace DDD.Chess.ValueObjects
         {
             yield return Color;
         }
+
+        public override string ToString()
+        {
+            return $"{Color} {GetType().Name}";
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using BLL.Commands.CreateGame;
 using BLL.Commands.StartGame;
+using BLL.Queries.GetBoard;
 using DDD.Chess.Exceptions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -17,7 +18,7 @@ namespace API.Controllers
             _mediator = mediator;
         }
 
-        [HttpPost("createGame")]
+        [HttpPost("game")]
         public async Task<IActionResult> CreateGame()
         {
             CreateGameCommand command = new();
@@ -25,10 +26,10 @@ namespace API.Controllers
             return Ok(response);
         }
 
-        [HttpPut("startGame")]
-        public async Task<IActionResult> StartGame()
+        [HttpPut("game/{id}/start")]
+        public async Task<IActionResult> StartGame(int id)
         {
-            StartGameCommand command = new(1);
+            StartGameCommand command = new(id);
             StartGameResponse response;
 
             try
@@ -39,6 +40,15 @@ namespace API.Controllers
             {
                 return BadRequest(ex.Message);
             }
+
+            return Ok(response);
+        }
+
+        [HttpGet("game/{id}/board")]
+        public async Task<IActionResult> GetBoard(int id)
+        {
+            GetBoardQuery query = new(id);
+            GetBoardResponse response = await _mediator.Send(query);
 
             return Ok(response);
         }

@@ -1,6 +1,6 @@
 ﻿namespace DDD.Chess.ValueObjects
 {
-    internal enum GameState
+    public enum GameState
     {
         INITIAL,
         RUNNING,

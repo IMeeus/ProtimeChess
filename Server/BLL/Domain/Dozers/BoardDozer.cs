@@ -5,17 +5,23 @@ namespace BLL.Domain.Dozers
 {
     internal class BoardDozer
     {
-        public Task<BoardVM> Doze(Board board)
+        public BoardVM Doze(Board board)
         {
-            var boardState = board.State;
+            Dictionary<Square, Piece?> boardState = board.State;
+            Dictionary<string, string?> vmBoardState = new();
 
             foreach (var kv in boardState)
             {
-                var square = kv.Key;
-                var piece = kv.Value;
+                Square square = kv.Key;
+                Piece? piece = kv.Value;
+
+                vmBoardState.Add($"{square.File}{square.Rank}", piece?.ToString());
             }
 
-            return Task.FromResult(new BoardVM());
+            return new BoardVM
+            {
+                State = vmBoardState
+            };
         }
     }
 }
