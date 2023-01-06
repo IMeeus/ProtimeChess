@@ -65,12 +65,17 @@ namespace DDD.Chess.Aggregates
 
             var newBoard = pieceAtStart.Move(Board, command.Move, _moveHistory);
 
-            if (newBoard.IsKingChecked(CurrentPlayerColor, _moveHistory))
+            if (newBoard.IsKingInCheck(CurrentPlayerColor, _moveHistory))
             {
                 throw ChessException.CantMakeMoveResultingInCheck;
             }
 
             RaiseEvent(new MoveMade(command.Move));
+
+            if (newBoard.IsKingInCheckMate(CurrentPlayerColor.GetOpposite(), _moveHistory))
+            {
+                RaiseEvent(new GameEnded());
+            }
         }
 
         protected override void When(DomainEvent domainEvent)
@@ -79,6 +84,7 @@ namespace DDD.Chess.Aggregates
             {
                 case GameStarted gameStarted: Handle(gameStarted); break;
                 case MoveMade moveMade: Handle(moveMade); break;
+                case GameEnded gameEnded: Handle(gameEnded); break;
                 default: throw new InvalidEventException();
             }
         }
@@ -94,6 +100,11 @@ namespace DDD.Chess.Aggregates
             Piece pieceAtStart = Board.GetPieceOn(move.StartSquare)!;
 
             Board = pieceAtStart.Move(Board, move, _moveHistory);
+        }
+
+        private void Handle(GameEnded @event)
+        {
+            State = GameState.ENDED;
         }
     }
 }

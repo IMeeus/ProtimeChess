@@ -19,7 +19,7 @@ namespace DDD.Chess.ValueObjects
             return _state[square];
         }
 
-        public King GetKing(Color color)
+        public King GetKingPiece(Color color)
         {
             return (King)_state.Values.Single(v => v is King && v.Color == color)!;
         }
@@ -29,13 +29,13 @@ namespace DDD.Chess.ValueObjects
             return _state.Single(kv => kv.Value is King && kv.Value.Color == color).Key;
         }
 
-        public bool IsKingChecked(Color color, List<Move> moveHistory)
+        public bool IsKingInCheck(Color color, List<Move> moveHistory)
         {
             var kingSquare = GetKingSquare(color);
 
-            var oppositeSquarePieces = _state.Where(squarePiece => squarePiece.Value?.Color == color.GetOpposite());
+            var enemySquarePieces = _state.Where(squarePiece => squarePiece.Value?.Color == color.GetOpposite());
 
-            foreach (var squarePiece in oppositeSquarePieces)
+            foreach (var squarePiece in enemySquarePieces)
             {
                 var square = squarePiece.Key;
                 var piece = squarePiece.Value;
@@ -49,6 +49,36 @@ namespace DDD.Chess.ValueObjects
             }
 
             return false;
+        }
+
+        public bool IsKingInCheckMate(Color color, List<Move> moveHistory)
+        {
+            var kingPiece = GetKingPiece(color);
+            var kingSquare = GetKingSquare(color);
+
+            var kingValidTargetSquares = kingPiece.GetValidTargetSquares(this, kingSquare, moveHistory);
+            var enemySquarePieces = _state.Where(squarePiece => squarePiece.Value?.Color == color.GetOpposite());
+
+            bool hasSafeTargetSquares = false;
+            foreach (var kingValidTargetSquare in kingValidTargetSquares)
+            {
+                bool canBeAttacked = false;
+                foreach (var enemySquarePiece in enemySquarePieces)
+                {
+                    var enemySquare = enemySquarePiece.Key;
+                    var enemyPiece = enemySquarePiece.Value;
+
+                    var enemyValidTargetSquares = enemyPiece!.GetValidTargetSquares(this, enemySquare, moveHistory);
+
+                    if (enemyValidTargetSquares.Any(square => square == kingValidTargetSquare))
+                    {
+                        canBeAttacked = true;
+                    }
+                }
+                if (!canBeAttacked) hasSafeTargetSquares = true;
+            }
+
+            return hasSafeTargetSquares;
         }
 
         public Board MovePiece(Square startSquare, Square targetSquare)
