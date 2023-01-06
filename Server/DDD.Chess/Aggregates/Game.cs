@@ -85,7 +85,7 @@ namespace DDD.Chess.Aggregates
                 case GameStarted gameStarted: Handle(gameStarted); break;
                 case MoveMade moveMade: Handle(moveMade); break;
                 case GameEnded gameEnded: Handle(gameEnded); break;
-                default: throw new InvalidEventException();
+                default: throw new NotImplementedException();
             }
         }
 
