@@ -29,12 +29,6 @@ namespace DDD.Chess.ValueObjects
             return _state.Single(kv => kv.Value is King && kv.Value.Color == color).Key;
         }
 
-        public bool IsCheck(Color color)
-        {
-            //var king = _state.Where(kv => kv.Value is King && kv.Value.Color == Color.WHITE);
-            return false;
-        }
-
         public Board MovePiece(Square startSquare, Square targetSquare)
         {
             var boardState = CopyState();
@@ -42,6 +36,15 @@ namespace DDD.Chess.ValueObjects
             var pieceOnStartSquare = GetPieceOn(startSquare);
             boardState[startSquare] = null;
             boardState[targetSquare] = pieceOnStartSquare;
+
+            return new Board(boardState);
+        }
+
+        public Board RemovePiece(Square square)
+        {
+            var boardState = CopyState();
+
+            boardState[square] = null;
 
             return new Board(boardState);
         }

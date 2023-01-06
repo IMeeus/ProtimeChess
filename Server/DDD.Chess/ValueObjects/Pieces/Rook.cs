@@ -131,14 +131,14 @@ namespace DDD.Chess.ValueObjects.Pieces
                     && move.TargetSquare == new Square(File.D, Rank.ONE)
                     && whiteKingSquare == new Square(File.E, Rank.ONE))
                 {
-                    newBoard = board.MovePiece(whiteKingSquare, new Square(File.C, Rank.ONE));
+                    newBoard = newBoard.MovePiece(whiteKingSquare, new Square(File.C, Rank.ONE));
                 }
 
                 if (move.StartSquare == new Square(File.H, Rank.ONE)
                     && move.TargetSquare == new Square(File.F, Rank.ONE)
                     && whiteKingSquare == new Square(File.E, Rank.ONE))
                 {
-                    newBoard = board.MovePiece(whiteKingSquare, new Square(File.G, Rank.ONE));
+                    newBoard = newBoard.MovePiece(whiteKingSquare, new Square(File.G, Rank.ONE));
                 }
             }
 
@@ -150,14 +150,14 @@ namespace DDD.Chess.ValueObjects.Pieces
                     && move.TargetSquare == new Square(File.D, Rank.EIGHT)
                     && blackKingSquare == new Square(File.E, Rank.EIGHT))
                 {
-                    newBoard = board.MovePiece(blackKingSquare, new Square(File.C, Rank.ONE));
+                    newBoard = newBoard.MovePiece(blackKingSquare, new Square(File.C, Rank.ONE));
                 }
 
                 if (move.StartSquare == new Square(File.H, Rank.EIGHT)
                     && move.TargetSquare == new Square(File.F, Rank.EIGHT)
                     && blackKingSquare == new Square(File.E, Rank.EIGHT))
                 {
-                    newBoard = board.MovePiece(blackKingSquare, new Square(File.G, Rank.EIGHT));
+                    newBoard = newBoard.MovePiece(blackKingSquare, new Square(File.G, Rank.EIGHT));
                 }
             }
 
