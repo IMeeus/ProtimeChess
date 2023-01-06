@@ -10,7 +10,7 @@ namespace Tests.DDD.Chess
         public void NavigateUp_WhenUpperSquareExists_ShouldReturnCorrectResult()
         {
             var square = new Square(File.A, Rank.ONE);
-            var result = square.Up();
+            var result = square.GetUp();
 
             Assert.That(result, Is.Not.Null);
             Assert.That(result.Rank, Is.EqualTo(Rank.TWO));
@@ -20,7 +20,7 @@ namespace Tests.DDD.Chess
         public void NavigateUp_WhenUpperSquareDoesntExist_ShouldReturnNull()
         {
             var square = new Square(File.A, Rank.EIGHT);
-            var result = square.Up();
+            var result = square.GetUp();
 
             Assert.That(result, Is.Null);
         }
@@ -29,7 +29,7 @@ namespace Tests.DDD.Chess
         public void NavigateAllUp_ShouldReturnCorrectResult()
         {
             var square = new Square(File.A, Rank.ONE);
-            var result = square.AllUp();
+            var result = square.GetAllUp();
 
             var expected = new List<Square>
             {
@@ -49,7 +49,7 @@ namespace Tests.DDD.Chess
         public void NavigateDown_WhenItExists_ShouldReturnCorrectResult()
         {
             var square = new Square(File.A, Rank.EIGHT);
-            var result = square.Down();
+            var result = square.GetDown();
 
             Assert.That(result, Is.Not.Null);
             Assert.That(result.Rank, Is.EqualTo(Rank.SEVEN));
@@ -59,7 +59,7 @@ namespace Tests.DDD.Chess
         public void NavigateLeft_WhenItExists_ShouldReturnCorrectResult()
         {
             var square = new Square(File.H, Rank.ONE);
-            var result = square.Left();
+            var result = square.GetLeft();
 
             Assert.That(result, Is.Not.Null);
             Assert.That(result.File, Is.EqualTo(File.G));
@@ -69,7 +69,7 @@ namespace Tests.DDD.Chess
         public void NavigateRight_WhenItExists_ShouldReturnCorrectResult()
         {
             var square = new Square(File.A, Rank.ONE);
-            var result = square.Right();
+            var result = square.GetRight();
 
             Assert.That(result, Is.Not.Null);
             Assert.That(result.File, Is.EqualTo(File.B));
@@ -79,7 +79,7 @@ namespace Tests.DDD.Chess
         public void NavigateUpLeft_WhenItExists_ShouldReturnCorrectResult()
         {
             var square = new Square(File.H, Rank.ONE);
-            var result = square.UpLeft();
+            var result = square.GetUpLeft();
 
             Assert.That(result, Is.Not.Null);
             Assert.That(result.File, Is.EqualTo(File.G));
@@ -90,7 +90,7 @@ namespace Tests.DDD.Chess
         public void NavigateUpRight_WhenItExists_ShouldReturnCorrectResult()
         {
             var square = new Square(File.A, Rank.ONE);
-            var result = square.UpRight();
+            var result = square.GetUpRight();
 
             Assert.That(result, Is.Not.Null);
             Assert.That(result.File, Is.EqualTo(File.B));
@@ -101,7 +101,7 @@ namespace Tests.DDD.Chess
         public void NavigateDownLeft_WhenItExists_ShouldReturnCorrectResult()
         {
             var square = new Square(File.H, Rank.EIGHT);
-            var result = square.DownLeft();
+            var result = square.GetDownLeft();
 
             Assert.That(result, Is.Not.Null);
             Assert.That(result.File, Is.EqualTo(File.G));
@@ -112,7 +112,7 @@ namespace Tests.DDD.Chess
         public void NavigateDownRight_WhenItExists_ShouldReturnCorrectResult()
         {
             var square = new Square(File.A, Rank.EIGHT);
-            var result = square.DownRight();
+            var result = square.GetDownRight();
 
             Assert.That(result, Is.Not.Null);
             Assert.That(result.File, Is.EqualTo(File.B));

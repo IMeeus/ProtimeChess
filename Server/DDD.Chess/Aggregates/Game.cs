@@ -58,7 +58,7 @@ namespace DDD.Chess.Aggregates
             }
 
             var startSquare = command.Move.StartSquare;
-            var pieceAtStart = Board.GetPieceOnSquare(startSquare);
+            var pieceAtStart = Board.GetPiece(startSquare);
 
             if (pieceAtStart is null)
             {
@@ -71,7 +71,7 @@ namespace DDD.Chess.Aggregates
             }
 
             var targetSquare = command.Move.TargetSquare;
-            var pieceAtTarget = Board.GetPieceOnSquare(targetSquare);
+            var pieceAtTarget = Board.GetPiece(targetSquare);
 
             if (pieceAtTarget is null) // not capturing
             {
@@ -102,7 +102,7 @@ namespace DDD.Chess.Aggregates
 
                 var anyPiecesBetweenStartAndTarget = squaresTowardsTarget.Any(square =>
                 {
-                    var pieceOnSquare = Board.GetPieceOnSquare(square);
+                    var pieceOnSquare = Board.GetPiece(square);
                     return pieceOnSquare is not null;
                 });
 
@@ -132,6 +132,7 @@ namespace DDD.Chess.Aggregates
 
         private void Handle(MoveMade @event)
         {
+            throw new NotImplementedException();
         }
     }
 }

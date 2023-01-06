@@ -2,7 +2,7 @@
 
 namespace DDD.Chess.ValueObjects.Pieces
 {
-    internal class King : Piece
+    public class King : Piece
     {
         private readonly IMoveStategy[] _moveStrategies = new IMoveStategy[]
         {

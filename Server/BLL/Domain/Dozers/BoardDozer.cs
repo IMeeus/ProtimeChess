@@ -7,7 +7,7 @@ namespace BLL.Domain.Dozers
     {
         public BoardVM Doze(Board board)
         {
-            Dictionary<Square, Piece?> boardState = board.State;
+            Dictionary<Square, Piece?> boardState = board.CopyState();
             Dictionary<string, string?> vmBoardState = new();
 
             foreach (var kv in boardState)

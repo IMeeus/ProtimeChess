@@ -13,7 +13,7 @@ namespace DDD.Chess.ValueObjects
             Rank = rank;
         }
 
-        public Square? Up()
+        public Square? GetUp()
         {
             var newRankIndex = Rank.Index + 1;
             if (Rank.IsValidIndex(newRankIndex))
@@ -24,18 +24,18 @@ namespace DDD.Chess.ValueObjects
             return null;
         }
 
-        public IEnumerable<Square> AllUp()
+        public IEnumerable<Square> GetAllUp()
         {
             Square? currentSquare = this;
             while (true)
             {
-                currentSquare = currentSquare.Up();
+                currentSquare = currentSquare.GetUp();
                 if (currentSquare is null) break;
                 yield return currentSquare;
             }
         }
 
-        public Square? Down()
+        public Square? GetDown()
         {
             var newRankIndex = Rank.Index - 1;
             if (Rank.IsValidIndex(newRankIndex))
@@ -46,18 +46,18 @@ namespace DDD.Chess.ValueObjects
             return null;
         }
 
-        public IEnumerable<Square> AllDown()
+        public IEnumerable<Square> GetAllDown()
         {
             Square? currentSquare = this;
             while (true)
             {
-                currentSquare = currentSquare.Down();
+                currentSquare = currentSquare.GetDown();
                 if (currentSquare is null) break;
                 yield return currentSquare;
             }
         }
 
-        public Square? Left()
+        public Square? GetLeft()
         {
             var newFileIndex = File.Index - 1;
             if (File.IsValidIndex(newFileIndex))
@@ -68,18 +68,18 @@ namespace DDD.Chess.ValueObjects
             return null;
         }
 
-        public IEnumerable<Square> AllLeft()
+        public IEnumerable<Square> GetAllLeft()
         {
             Square? currentSquare = this;
             while (true)
             {
-                currentSquare = currentSquare.Left();
+                currentSquare = currentSquare.GetLeft();
                 if (currentSquare is null) break;
                 yield return currentSquare;
             }
         }
 
-        public Square? Right()
+        public Square? GetRight()
         {
             var newFileIndex = File.Index + 1;
             if (File.IsValidIndex(newFileIndex))
@@ -90,18 +90,18 @@ namespace DDD.Chess.ValueObjects
             return null;
         }
 
-        public IEnumerable<Square> AllRight()
+        public IEnumerable<Square> GetAllRight()
         {
             Square? currentSquare = this;
             while (true)
             {
-                currentSquare = currentSquare.Right();
+                currentSquare = currentSquare.GetRight();
                 if (currentSquare is null) break;
                 yield return currentSquare;
             }
         }
 
-        public Square? UpRight()
+        public Square? GetUpRight()
         {
             var newFileIndex = File.Index + 1;
             var newRankIndex = Rank.Index + 1;
@@ -115,18 +115,18 @@ namespace DDD.Chess.ValueObjects
             return null;
         }
 
-        public IEnumerable<Square> AllUpRight()
+        public IEnumerable<Square> GetAllUpRight()
         {
             Square? currentSquare = this;
             while (true)
             {
-                currentSquare = currentSquare.UpRight();
+                currentSquare = currentSquare.GetUpRight();
                 if (currentSquare is null) break;
                 yield return currentSquare;
             }
         }
 
-        public Square? UpLeft()
+        public Square? GetUpLeft()
         {
             var newFileIndex = File.Index - 1;
             var newRankIndex = Rank.Index + 1;
@@ -140,18 +140,18 @@ namespace DDD.Chess.ValueObjects
             return null;
         }
 
-        public IEnumerable<Square> AllUpLeft()
+        public IEnumerable<Square> GetAllUpLeft()
         {
             Square? currentSquare = this;
             while (true)
             {
-                currentSquare = currentSquare.UpLeft();
+                currentSquare = currentSquare.GetUpLeft();
                 if (currentSquare is null) break;
                 yield return currentSquare;
             }
         }
 
-        public Square? DownLeft()
+        public Square? GetDownLeft()
         {
             var newFileIndex = File.Index - 1;
             var newRankIndex = Rank.Index - 1;
@@ -165,18 +165,18 @@ namespace DDD.Chess.ValueObjects
             return null;
         }
 
-        public IEnumerable<Square> AllDownLeft()
+        public IEnumerable<Square> GetAllDownLeft()
         {
             Square? currentSquare = this;
             while (true)
             {
-                currentSquare = currentSquare.DownLeft();
+                currentSquare = currentSquare.GetDownLeft();
                 if (currentSquare is null) break;
                 yield return currentSquare;
             }
         }
 
-        public Square? DownRight()
+        public Square? GetDownRight()
         {
             var newFileIndex = File.Index + 1;
             var newRankIndex = Rank.Index - 1;
@@ -190,12 +190,12 @@ namespace DDD.Chess.ValueObjects
             return null;
         }
 
-        public IEnumerable<Square> AllDownRight()
+        public IEnumerable<Square> GetAllDownRight()
         {
             Square? currentSquare = this;
             while (true)
             {
-                currentSquare = currentSquare.DownRight();
+                currentSquare = currentSquare.GetDownRight();
                 if (currentSquare is null) break;
                 yield return currentSquare;
             }
@@ -205,14 +205,14 @@ namespace DDD.Chess.ValueObjects
         {
             IEnumerable<Square>[] allRanges =
             {
-                AllUp(),
-                AllDown(),
-                AllRight(),
-                AllLeft(),
-                AllUpRight(),
-                AllUpLeft(),
-                AllDownRight(),
-                AllDownLeft()
+                GetAllUp(),
+                GetAllDown(),
+                GetAllRight(),
+                GetAllLeft(),
+                GetAllUpRight(),
+                GetAllUpLeft(),
+                GetAllDownRight(),
+                GetAllDownLeft()
             };
 
             foreach (var range in allRanges)

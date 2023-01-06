@@ -10,10 +10,10 @@
         {
             IEnumerable<Square>[] ranges =
             {
-                fromSquare.AllUpLeft(),
-                fromSquare.AllUpRight(),
-                fromSquare.AllDownLeft(),
-                fromSquare.AllDownRight()
+                fromSquare.GetAllUpLeft(),
+                fromSquare.GetAllUpRight(),
+                fromSquare.GetAllDownLeft(),
+                fromSquare.GetAllDownRight()
             };
 
             return ranges.SelectMany(x => x);
