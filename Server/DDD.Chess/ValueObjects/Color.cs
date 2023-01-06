@@ -12,6 +12,10 @@
             _value = value;
         }
 
+        public void GetOpposite(Color color)
+        {
+        }
+
         public override string ToString()
         {
             return _value;

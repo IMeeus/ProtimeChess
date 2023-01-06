@@ -29,6 +29,15 @@ namespace DDD.Chess.ValueObjects
             return _state.Single(kv => kv.Value is King && kv.Value.Color == color).Key;
         }
 
+        public bool IsKingChecked(Color color)
+        {
+            var kingSquare = GetKingSquare(color);
+
+            foreach (var piece in _state.Values.Where(piece => piece.Color)
+            {
+            }
+        }
+
         public Board MovePiece(Square startSquare, Square targetSquare)
         {
             var boardState = CopyState();

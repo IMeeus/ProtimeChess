@@ -10,6 +10,8 @@ namespace DDD.Chess.Aggregates
 {
     public class Game : AggregateRoot<GameId>
     {
+        private readonly List<Move> _moveHistory;
+
         public GameState State { get; private set; }
         public Color CurrentPlayerColor { get; private set; }
         public Board Board { get; private set; }
@@ -70,47 +72,7 @@ namespace DDD.Chess.Aggregates
                 throw ChessException.InvalidTurn;
             }
 
-            var targetSquare = command.Move.TargetSquare;
-            var pieceAtTarget = Board.GetPieceOn(targetSquare);
-
-            if (pieceAtTarget is null) // not capturing
-            {
-                var moveRange = pieceAtStart.GetMoveRange(startSquare);
-                if (!moveRange.Contains(targetSquare))
-                {
-                    throw ChessException.SquareNotInRangeOfPiece;
-                }
-            }
-            else // capturing
-            {
-                if (pieceAtTarget.Color == CurrentPlayerColor)
-                {
-                    throw ChessException.CanNotCaptureFriendlyPieces;
-                }
-
-                var attackRange = pieceAtStart.GetAttackRange(startSquare);
-                if (!attackRange.Contains(targetSquare))
-                {
-                    throw ChessException.SquareNotInRangeOfPiece;
-                }
-            }
-
-            if (!pieceAtStart.CanJump)
-            {
-                var squaresTowardsTarget = startSquare.GetPathTo(targetSquare).ToList();
-                squaresTowardsTarget.Remove(targetSquare);
-
-                var anyPiecesBetweenStartAndTarget = squaresTowardsTarget.Any(square =>
-                {
-                    var pieceOnSquare = Board.GetPieceOn(square);
-                    return pieceOnSquare is not null;
-                });
-
-                if (anyPiecesBetweenStartAndTarget)
-                {
-                    throw ChessException.CantMoveThroughPieces;
-                }
-            }
+            var newBoard = pieceAtStart.Move(Board, command.Move, _moveHistory);
 
             RaiseEvent(new MoveMade());
         }
