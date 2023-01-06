@@ -17,6 +17,7 @@
   <ItemGroup>
     <ProjectReference Include="..\BLL\BLL.csproj" />
     <ProjectReference Include="..\DAL.Event\DAL.Event.csproj" />
+    <ProjectReference Include="..\DDD.Chess\DDD.Chess.csproj" />
   </ItemGroup>
 
 </Project>

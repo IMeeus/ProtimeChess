@@ -1,6 +1,6 @@
 ﻿namespace DDD.Chess.Exceptions
 {
-    internal class ChessException : Exception
+    public class ChessException : Exception
     {
         public static ChessException GameNotInRunningState
             => new("Game is not in running state!");

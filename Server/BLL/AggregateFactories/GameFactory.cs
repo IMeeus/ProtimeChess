@@ -19,9 +19,21 @@ namespace BLL.AggregateFactories
         {
             var gameEvents = await _eventRepository.ListEventsOf(gameId.Value);
 
-            IEnumerable<DomainEvent> domainEvents = gameEvents.Select(e => JsonConvert.DeserializeObject<DomainEvent>(e.EventData));
+            IEnumerable<DomainEvent> domainEvents = gameEvents.Select(e =>
+            {
+                var domainAssembly = "DDD.Chess";
+                var eventClassName = $"{domainAssembly}.DomainEvents.{e.EventType}";
 
-            return new Game(gameId, domainEvents);
+                Type? eventType = Type.GetType($"{eventClassName}, {domainAssembly}");
+
+                if (eventType is null) throw new InvalidCastException();
+
+                return (DomainEvent)JsonConvert.DeserializeObject(e.EventData, eventType);
+            });
+
+            var newGame = new Game(gameId, domainEvents);
+
+            return newGame;
         }
     }
 }

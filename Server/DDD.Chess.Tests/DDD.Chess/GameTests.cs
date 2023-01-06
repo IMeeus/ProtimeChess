@@ -5,9 +5,9 @@ using DDD.Chess.Identifiers;
 using DDD.Chess.ValueObjects;
 using File = DDD.Chess.ValueObjects.File;
 
-namespace Tests
+namespace Tests.DDD.Chess
 {
-    public class GameTests
+    internal class GameTests
     {
         [Test]
         public void StartGame_WhenGameHasAlreadyStarted_ShouldThrowError()
