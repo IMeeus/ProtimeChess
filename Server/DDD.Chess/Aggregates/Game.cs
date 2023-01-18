@@ -99,7 +99,11 @@ namespace DDD.Chess.Aggregates
             Move move = @event.Move;
             Piece pieceAtStart = Board.GetPieceOn(move.StartSquare)!;
 
-            Board = pieceAtStart.Move(Board, move, _moveHistory);
+            var newBoard = pieceAtStart.Move(Board, move, _moveHistory);
+
+            Board = newBoard;
+            _moveHistory.Add(move);
+            CurrentPlayerColor = CurrentPlayerColor.GetOpposite();
         }
 
         private void Handle(GameEnded @event)
