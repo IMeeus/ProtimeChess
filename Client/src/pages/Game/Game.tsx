@@ -5,7 +5,6 @@ import { getBoard, BoardState } from "services/chess-service";
 
 const Game = () => {
     const { id } = useParams();
-
     const [boardState, setBoardState] = useState<BoardState>();
 
     useEffect(() => {
@@ -17,7 +16,7 @@ const Game = () => {
         }
 
         loadBoard();
-    }, [id]);
+    }, []);
 
     return (
         <>
