@@ -10,7 +10,7 @@ namespace DDD.Chess.Aggregates
 {
     public class Game : AggregateRoot<GameId>
     {
-        private readonly List<Move> _moveHistory;
+        private List<Move> _moveHistory;
 
         public GameState State { get; private set; }
         public Color CurrentPlayerColor { get; private set; }
@@ -28,6 +28,7 @@ namespace DDD.Chess.Aggregates
 
         private void Initialize()
         {
+            _moveHistory = new List<Move>();
             State = GameState.INITIAL;
             CurrentPlayerColor = Color.WHITE;
             Board = BoardFactory.NewBoard();
