@@ -3,7 +3,7 @@
 // type Square = [File, Rank];
 // type Piece = 'Bishop' | 'King' | 'Knight' | 'Pawn' | 'Queen' | 'Rook';
 
-export type BoardState = {[square: string] : [piece: string]}
+export type BoardState = Record<string,string>;
 
 export interface Board {
     state: BoardState;

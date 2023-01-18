@@ -9,23 +9,26 @@ const style: React.CSSProperties = {
 }
 
 const pieceMap: Record<string, string> = {
-    'white King': '&#9812;',
-    'white Queen': '&#9813;',
-    'white Rook': '&#9814;',
-    'white Bishop': '&#9815;',
-    'white Knight': '&#9816;',
-    'white Pawn': '&#9817;',
-    'black King': '&#9818;',
-    'black Queen': '&#9819;',
-    'black Rook': '&#9820;',
-    'black Bishop': '&#9821;',
-    'black Knight': '&#9822;',
-    'black Pawn': '&#9823;'
+    'White King': '&#9812;',
+    'White Queen': '&#9813;',
+    'White Rook': '&#9814;',
+    'White Bishop': '&#9815;',
+    'White Knight': '&#9816;',
+    'White Pawn': '&#9817;',
+    'Black King': '&#9818;',
+    'Black Queen': '&#9819;',
+    'Black Rook': '&#9820;',
+    'Black Bishop': '&#9821;',
+    'Black Knight': '&#9822;',
+    'Black Pawn': '&#9823;'
 }
 
 const Square = (props: Props) => {
     const classes: string[] = [
-        props.color === 'white' ? 'bg-warning' : 'bg-success',
+        props.color === 'white' ? 'bg-white' : 'bg-warning',
+        'border',
+        'border-1',
+        'border-dark'
     ];
 
     const getClassName = (): string => {
@@ -37,7 +40,7 @@ const Square = (props: Props) => {
 
         const ascii = pieceMap[props.piece];
 
-        return <p className="fs-2" dangerouslySetInnerHTML={{ __html: ascii }}></p>;
+        return <p className="fs-2 text-center" dangerouslySetInnerHTML={{ __html: ascii }}></p>;
     }
 
     return (
