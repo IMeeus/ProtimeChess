@@ -10,28 +10,14 @@ namespace DDD.Chess.Aggregates
 {
     public class Game : AggregateRoot<GameId>
     {
-        private List<Move> _moveHistory;
+        private List<Move> _moveHistory = new();
 
-        public GameState State { get; private set; }
-        public Color CurrentPlayerColor { get; private set; }
-        public Board Board { get; private set; }
-
-        public Game(GameId id) : base(id)
-        {
-            Initialize();
-        }
+        public GameState State { get; private set; } = GameState.INITIAL;
+        public Color CurrentPlayerColor { get; private set; } = Color.WHITE;
+        public Board Board { get; private set; } = BoardFactory.NewBoard();
 
         public Game(GameId id, IEnumerable<DomainEvent> events) : base(id, events)
         {
-            Initialize();
-        }
-
-        private void Initialize()
-        {
-            _moveHistory = new List<Move>();
-            State = GameState.INITIAL;
-            CurrentPlayerColor = Color.WHITE;
-            Board = BoardFactory.NewBoard();
         }
 
         public void Start()

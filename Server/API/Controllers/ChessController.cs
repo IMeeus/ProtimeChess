@@ -1,4 +1,5 @@
 ﻿using BLL.Commands.CreateGame;
+using BLL.Commands.MakeMove;
 using BLL.Commands.StartGame;
 using BLL.Queries.GetBoard;
 using DDD.Chess.Exceptions;
@@ -31,6 +32,24 @@ namespace API.Controllers
         {
             StartGameCommand command = new(id);
             StartGameResponse response;
+
+            try
+            {
+                response = await _mediator.Send(command);
+            }
+            catch (ChessException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+            return Ok(response);
+        }
+
+        [HttpPut("game/{id}/move")]
+        public async Task<IActionResult> MakeMove(int id, string startSquare, string targetSquare)
+        {
+            MakeMoveCommand command = new(id, startSquare, targetSquare);
+            MakeMoveResponse response;
 
             try
             {

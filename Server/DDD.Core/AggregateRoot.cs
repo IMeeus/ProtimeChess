@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace DDD.Core
+﻿namespace DDD.Core
 {
     /// <summary>
     /// Represents an aggregate-root of a domain aggregate (DDD). An aggregate-root is always an entity.
     /// </summary>
     /// <typeparam name="TId">The type of the Id of the entity.</typeparam>
-    public abstract class AggregateRoot<TId> : Entity<TId>
+    public abstract class AggregateRoot<TId>
     {
         /// <summary>
         /// The list of events that occurred while handling commands.
@@ -35,24 +32,19 @@ namespace DDD.Core
         public int OriginalVersion { get; private set; }
 
         /// <summary>
-        /// Constructor for creating an empty aggregate.
-        /// </summary>
-        /// <param name="id">The unique id of the aggregate-root.</param>
-        public AggregateRoot(TId id) : base(id)
-        {
-            OriginalVersion = 0;
-            Version = 0;
-            _events = new List<DomainEvent>();
-        }
-
-        /// <summary>
-        /// Constructor for creating an aggregate of which the state is intialized by 
+        /// Constructor for creating an aggregate of which the state is intialized by
         /// replaying the list of events specified.
         /// </summary>
         /// <param name="id">The unique Id of the aggregate.</param>
         /// <param name="events">The events to replay.</param>
-        public AggregateRoot(TId id, IEnumerable<DomainEvent> events) : this(id)
+        public AggregateRoot(TId id, IEnumerable<DomainEvent> events)
         {
+            OriginalVersion = 0;
+            Version = 0;
+            _events = new List<DomainEvent>();
+
+            if (!events.Any()) return;
+
             IsReplaying = true;
             foreach (DomainEvent evt in events)
             {
@@ -64,7 +56,7 @@ namespace DDD.Core
         }
 
         /// <summary>
-        /// Let the aggregate handle an event and save it in the list of events 
+        /// Let the aggregate handle an event and save it in the list of events
         /// so it can be used outside the aggregate (persisted, published on a bus, ...).
         /// </summary>
         /// <param name="domainEvent">The event to handle.</param>
@@ -88,11 +80,11 @@ namespace DDD.Core
         }
 
         /// <summary>
-        /// Handle a specific event. Derived classes should  implement this method 
+        /// Handle a specific event. Derived classes should  implement this method
         ///for every event type.
         /// </summary>
         /// <param name="domainEevent">The event to handle.</param>
-        /// <remarks>Because the parameter type of the specified event is dynamic, 
+        /// <remarks>Because the parameter type of the specified event is dynamic,
         /// the appropriate overload of the When method is called.</remarks>
         protected abstract void When(DomainEvent domainEvent);
     }

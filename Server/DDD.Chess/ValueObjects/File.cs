@@ -4,8 +4,7 @@ namespace DDD.Chess.ValueObjects
 {
     public class File : ValueObject
     {
-        private readonly string _value;
-
+        public string Value { get; init; }
         public int Index { get; init; }
 
         public static File A => new(0, "A");
@@ -22,6 +21,11 @@ namespace DDD.Chess.ValueObjects
             return Values.Single(x => x.Index == index);
         }
 
+        public static File WithValue(string value)
+        {
+            return Values.Single(x => x.Value == value);
+        }
+
         public static IEnumerable<File> Values
         {
             get
@@ -34,7 +38,7 @@ namespace DDD.Chess.ValueObjects
         private File(int index, string value)
         {
             Index = index;
-            _value = value;
+            Value = value;
         }
 
         public static bool IsValidIndex(int fileIndex) => fileIndex >= 0 && fileIndex < Values.Count();
@@ -56,7 +60,7 @@ namespace DDD.Chess.ValueObjects
 
         public override string ToString()
         {
-            return _value;
+            return Value;
         }
     }
 }

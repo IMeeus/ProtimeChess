@@ -28,7 +28,12 @@ namespace BLL.Domain.Factories
 
                 if (eventType is null) throw new InvalidCastException();
 
-                return (DomainEvent)JsonConvert.DeserializeObject(e.EventData, eventType);
+                JsonSerializerSettings settings = new()
+                {
+                    ConstructorHandling = ConstructorHandling.AllowNonPublicDefaultConstructor
+                };
+
+                return (DomainEvent)JsonConvert.DeserializeObject(e.EventData, eventType, settings);
             });
 
             var newGame = new Game(gameId, domainEvents);

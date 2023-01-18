@@ -1,6 +1,8 @@
-﻿namespace DDD.Chess.ValueObjects
+﻿using DDD.Core;
+
+namespace DDD.Chess.ValueObjects
 {
-    public class Color
+    public class Color : ValueObject
     {
         private readonly string _value;
 
@@ -23,6 +25,11 @@
         public override string ToString()
         {
             return _value;
+        }
+
+        protected override IEnumerable<object> GetAtomicValues()
+        {
+            yield return _value;
         }
     }
 }
